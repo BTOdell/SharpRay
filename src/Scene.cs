@@ -21,6 +21,8 @@ internal sealed class Scene {
         }
     }
 
+    public Vec3 SkyColor => new(0);
+
     public HitResult? TraceRay(in Ray ray) {
         float a = Dot(ray.Direction, ray.Direction); // never negative
         float _2a = 2.0f * a;
@@ -67,8 +69,8 @@ internal sealed class Scene {
         return MathF.Max(0.0f, Dot(ray.Direction, -this.lightDirection));
     }
 
-    public Vec3 ObjectColor(int objectIndex) {
-        return this.spheres[objectIndex].Color;
+    public ref readonly Sphere GetSphere(int objectIndex) {
+        return ref CollectionsMarshal.AsSpan(this.spheres)[objectIndex];
     }
 
 }

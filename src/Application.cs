@@ -50,8 +50,7 @@ internal sealed class Application : IDisposable {
                     coord = coord * 2.0f - Vec2.One; // -1 to 1 (opengl-style)
                     coord = coord with { X = coord.X * aspectRatio }; // fix squishing
                     Vec4 color = this.renderer.PerPixel(coord);
-                    color = Clamp(color, Vec4.Zero, Vec4.One);
-                    currentPixelBuffer[y * width + x] = Application.ConvertToRGBA(color);
+                    currentPixelBuffer[y * width + x] = Application.ConvertToRGBA(Clamp(color, Vec4.Zero, Vec4.One));
                 }
             }
             Console.WriteLine("Rendered in: {0}ms", timer.Elapsed.TotalMilliseconds);
