@@ -1,13 +1,19 @@
 ﻿using SharpRay;
+using Silk.NET.Input.Glfw;
 using Silk.NET.Maths;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
+using Silk.NET.Windowing.Glfw;
 
 Vector2D<int> lastSize = Vector2D<int>.Zero;
 Application? app = null;
 GL? gl = null;
 uint tex = 0;
 uint fbo = 0;
+
+// Support AOT
+GlfwWindowing.RegisterPlatform();
+GlfwInput.RegisterPlatform();
 
 WindowOptions windowOptions = WindowOptions.Default;
 windowOptions.Title = "SharpRay: A raytracing benchmark for C# .NET";
